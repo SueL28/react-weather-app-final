@@ -73,7 +73,9 @@ export default function TemperatureMain() {
               <div className="row">
                 <div className="wind-speed-number">
                   20
-                  <div className="row wind-speed-number">NE KM</div>
+                  <div className="row">
+                      <span className="wind-speed-number">NE KM</span>
+                    </div>
                 </div>
               </div>
             </div>
@@ -125,7 +127,9 @@ export default function TemperatureMain() {
               <div className="row">
                 <div className="wind-speed-number-tom">
                   30
-                  <div className="row wind-speed-number-tom">NE KM</div>
+                  <div className="row">
+                      <span className="wind-speed-number-tom">NE KM</span>
+                  </div>
                 </div>
               </div>
             </div>

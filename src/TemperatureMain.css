@@ -10,6 +10,7 @@
   .Temperatures .currently-header {
     text-align: center;
     padding-bottom: 20px;
+    font-size: 29pt;
   }
   
   .current-temp-item-container {
@@ -67,7 +68,7 @@
   
   .Temperatures .weather-factors-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
   }
   
   .current-factors-container {
