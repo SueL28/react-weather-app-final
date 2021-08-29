@@ -11,3 +11,41 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+h1 {
+  padding: 20px;
+  padding-top: 0;
+  margin-top: 0;
+  font-weight: bolder;
+  font-size: 50pt;
+  margin-left: 50px;
+  font-style: italic;
+  font-family: "Hind", sans-serif;
+}
+
+h2 {
+  margin-left: 80px;
+  margin-top: 30px;
+  margin-bottom: -1px;
+  font-weight: bold;
+  font-size: 30pt;
+  font-family: "Archivo Narrow", sans-serif;
+}
+
+h3 {
+  color: rgb(0, 110, 197);
+  font-family: "Archivo Narrow", sans-serif;
+  font-weight: bold;
+  font-size: 32pt;
+}
+
+.container-for-app {
+  display: block;
+  margin: 0 auto;
+  margin-top: 50px;
+  border: 3px solid rgb(77, 76, 72);
+  border-radius: 9px;
+  background-color: rgba(255, 255, 255, 0.56);
+  /* background-color: rgb(228, 228, 228); */
+
+  max-width: 1200px;
+}
