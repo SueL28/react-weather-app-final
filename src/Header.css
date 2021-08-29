@@ -1,0 +1,21 @@
+.Header .current-time {
+    color: rgb(77, 76, 72);
+  }
+  
+  .Header .am-pm {
+    font-size: 30pt;
+    margin-left: 10px;
+  }
+  
+  .Header .current-time {
+    color: rgb(77, 76, 72);
+  }
+  
+  .Header .weather-status {
+    font-size: 22pt;
+    font-family: "Archivo Narrow", sans-serif;
+    font-style: normal;
+    margin-top: -9px;
+    margin-left: 7px;
+  }
+  

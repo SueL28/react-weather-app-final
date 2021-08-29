@@ -1,0 +1,40 @@
+.Searchbar .search-bar-container {
+    display: block;
+    margin: 0px auto;
+    padding: 70px;
+  }
+  
+  .Searchbar .search-bar {
+    border: 2px solid rgb(77, 76, 72);
+    display: block;
+    margin: 0 auto;
+    text-transform: capitalize;
+  }
+  
+  .Searchbar .spacing {
+    padding-right: 4px;
+  }
+  
+  .Searchbar .magnifying-glass {
+    font-size: 16pt;
+    border-radius: 7px;
+    transition: all 150ms ease-in-out;
+  }
+  
+  .Searchbar .magnifying-glass:hover {
+    background-color: rgba(129, 129, 129, 0.555);
+  }
+  
+  .Searchbar .current-location {
+    font-size: 16pt;
+    background-color: rgb(0, 110, 197);
+    color: white;
+    border-radius: 7px;
+    transition: all 150ms ease-in-out;
+    font-family: "Barlow Semi Condensed", sans-serif;
+  }
+  
+  .Searchbar .current-location:hover {
+    background-color: rgb(51, 131, 192);
+  }
+  
