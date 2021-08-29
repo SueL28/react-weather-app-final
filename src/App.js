@@ -6,6 +6,7 @@ function App() {
     <div className="App">
       <div className="app-container">
         <h1> Placeholder text</h1>
+
       </div>
     </div>
   );
