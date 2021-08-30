@@ -11,6 +11,7 @@
     text-align: center;
     padding-bottom: 20px;
     font-size: 29pt;
+    font-weight: bold;
   }
   
   .current-temp-item-container {
@@ -60,6 +61,7 @@
   
   .Temperatures .tomorrow-temp-header {
     font-size: 29pt;
+    font-weight: 500;
   }
   
   .elements-tomorrow-temp {

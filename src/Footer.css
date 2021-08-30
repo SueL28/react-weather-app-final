@@ -1,11 +1,10 @@
 .Footer {
-    margin-top: 20px;
     margin-bottom: 30px;
     text-align: center;
     color: rgb(77, 76, 72);
     font-family: "Hind", sans-serif;
     font-style: bolder;
-    font-size: 14pt;
+    font-size: 12pt;
   }
   
   .Footer a {
@@ -23,6 +22,6 @@
   
  .Footer img{
       height: auto;
-      max-width: 50px;
+      max-width: 40px;
       padding: 0;
   }

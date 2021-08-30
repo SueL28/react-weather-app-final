@@ -1,5 +1,14 @@
+.Header{
+  margin-top: 40px;
+}
+
+.Header .date-line{
+  font-weight: 500;
+}
+
 .Header .current-time {
     color: rgb(77, 76, 72);
+    font-weight: 800;
   }
   
   .Header .am-pm {
@@ -7,15 +16,11 @@
     margin-left: 10px;
   }
   
-  .Header .current-time {
-    color: rgb(77, 76, 72);
-  }
   
   .Header .weather-status {
     font-size: 22pt;
     font-family: "Archivo Narrow", sans-serif;
     font-style: normal;
-    margin-top: -9px;
     margin-left: 7px;
   }
   
