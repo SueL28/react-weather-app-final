@@ -362,7 +362,7 @@ export default function TemperatureMain() {
             <div><img className="emoji-forecast" src={futureDay4.emoji} alt={futureDay4.description}></img></div>
             <div className="forecast-high-number">{futureDay4.high}°C</div>
             <div className="weather-status-font">HIGH</div>
-            <div className="forecast-low-number">{futureDay4.low}}°C</div>
+            <div className="forecast-low-number">{futureDay4.low}°C</div>
             <p className="weather-status-font">LOW</p>
           </div>
           <div className="col-sm forecast-day-container">
