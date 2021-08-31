@@ -22,6 +22,7 @@
     font-family: "Archivo Narrow", sans-serif;
     font-style: normal;
     margin-left: 7px;
+    text-transform: capitalize;
   }
   
 /*SEARCH BAR CSS */
@@ -168,9 +169,7 @@
     color: rgb(51, 144, 216);
   }
 
-  .wind-emoji{
-    font-size: 12pt;
-  }
+
   
   .factor-header-colour {
     color: rgb(51, 144, 216);
@@ -280,5 +279,66 @@
     display: block;
     margin: 0 auto;
     color: rgb(77, 76, 72);
+  }
+  
+  /* FORECAST CSS */
+
+  .Forecast .forecast-container {
+    display: block;
+    margin: 0 auto;
+    padding: 35px;
+  }
+  
+  .Forecast .forecast-day-container {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    border-right: 2px solid rgb(140, 189, 228);
+  }
+  
+  .Forecast .forecast-day-container-sunday {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    padding-left: 0;
+  }
+  
+  .Forecast .forecast-font {
+    padding-left: 10px;
+  }
+  
+  .Forecast hr {
+    color: rgb(81, 156, 218);
+    padding: 3px;
+  }
+  
+  .forecast-day {
+    font-family: "Archivo Narrow", sans-serif;
+    color: rgb(0, 110, 197);
+    font-weight: 600;
+    font-size: 14pt;
+    text-transform: uppercase;
+  }
+  
+  .weather-status-font {
+    font-family: "Barlow Semi Condensed", sans-serif;
+    font-style: italic;
+    font-weight: 500;
+    color: rgb(0, 110, 197);
+    text-transform: capitalize;
+  }
+
+  .Forecast .emoji-forecast{
+    max-width: 55px;
+  }
+  
+  .forecast-high-number {
+    font-family: "Barlow Semi Condensed", sans-serif;
+    font-weight: 500;
+  }
+  
+  .forecast-low-number {
+    font-family: "Barlow Semi Condensed", sans-serif;
+    font-weight: 500;
   }
   
