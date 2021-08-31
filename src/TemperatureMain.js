@@ -1,13 +1,13 @@
 import axios from "axios";
 import React, {useState} from "react";
-
+import Forecast from "./Forecast";
 import "./TemperatureMain.css";
 
 
 export default function TemperatureMain() {
   /* GET LOCATION COORDINATES AND API */
   const [coordinates, setCoordinates] = useState("null");
-  const [weatherLocation, setWeatherLocation] = useState("");
+  const [weather, setWeather] = useState("");
   const [futureWeatherTomorrow, setFutureWeatherTomorrow] = useState("");
   const [futureDay2, setFutureDay2] = useState("");
   const [futureDay3, setFutureDay3] = useState("");
@@ -25,9 +25,8 @@ export default function TemperatureMain() {
     }
 
     function getWeather(response){
-      console.log(response.data)
       setUpdated(true);
-      setWeatherLocation({
+      setWeather({
         temp_current: (Math.round(response.data.current.temp)), 
         feels_like: (Math.round(response.data.current.feels_like)), 
         high: (Math.round(response.data.daily[0].temp.max)), 
@@ -103,10 +102,98 @@ export default function TemperatureMain() {
       axios.get(apiUrl).then(getWeather)
       
       }
-    
+
+      /* GET SEARCHED WEATHER FROM INPUT */
+
+      function getSearchedWeather(response){
+        setWeather({
+          temp_current: (Math.round(response.data.current.temp)), 
+          feels_like: (Math.round(response.data.current.feels_like)), 
+          high: (Math.round(response.data.daily[0].temp.max)), 
+          low: (Math.round(response.data.daily[0].temp.max)),
+          pop: (response.data.daily[0].pop)*100,
+          wind: (Math.round(response.data.current.wind_speed)),
+          description: response.data.current.weather[0].description,
+          emoji:`http://openweathermap.org/img/wn/${response.data.current.weather[0].icon}@2x.png`
+        })
+
+        setFutureWeatherTomorrow({
+          temp_current:(Math.round(response.data.daily[0].temp.day)), 
+          feels_like:(Math.round(response.data.daily[0].feels_like.day)), 
+          high:(Math.round(response.data.daily[0].temp.max)), 
+          low:(Math.round(response.data.daily[0].temp.min)),
+          pop: (response.data.daily[0].pop)*100,
+          wind: (Math.round(response.data.daily[0].wind_speed)),
+          description: response.data.daily[0].weather[0].description,
+          emoji:`http://openweathermap.org/img/wn/${response.data.daily[0].weather[0].icon}@2x.png`
+        })
+        setFutureDay2({
+          dt: response.data.dt,
+          high: (Math.round(response.data.daily[1].temp.max)), 
+          low: (Math.round(response.data.daily[1].temp.min)),
+          description: response.data.daily[1].weather[0].description,
+          emoji:`http://openweathermap.org/img/wn/${response.data.daily[1].weather[0].icon}@2x.png`
+        }) 
+
+        setFutureDay3({
+          dt: response.data.dt,
+          high: (Math.round(response.data.daily[2].temp.max)), 
+          low: (Math.round(response.data.daily[2].temp.min)),
+          description: response.data.daily[2].weather[0].description,
+          emoji:`http://openweathermap.org/img/wn/${response.data.daily[2].weather[0].icon}@2x.png`
+        }) 
+        setFutureDay4({
+          dt: response.data.dt,
+          high: (Math.round(response.data.daily[3].temp.max)), 
+          low: (Math.round(response.data.daily[3].temp.min)),
+          description: response.data.daily[3].weather[0].description,
+          emoji:`http://openweathermap.org/img/wn/${response.data.daily[3].weather[0].icon}@2x.png`
+        }) 
+        setFutureDay5({
+          dt: response.data.dt,
+          high: (Math.round(response.data.daily[4].temp.max)), 
+          low: (Math.round(response.data.daily[4].temp.min)),
+          description: response.data.daily[4].weather[0].description,
+          emoji:`http://openweathermap.org/img/wn/${response.data.daily[4].weather[0].icon}@2x.png`
+        }) 
+        setFutureDay6({
+          dt: response.data.dt,
+          high: (Math.round(response.data.daily[5].temp.max)), 
+          low: (Math.round(response.data.daily[5].temp.min)),
+          description: response.data.daily[5].weather[0].description,
+          emoji:`http://openweathermap.org/img/wn/${response.data.daily[5].weather[0].icon}@2x.png`
+        }) 
+        setFutureDay7({
+          dt: response.data.dt,
+          high: (Math.round(response.data.daily[6].temp.max)), 
+          low: (Math.round(response.data.daily[6].temp.min)),
+          description: response.data.daily[6].weather[0].description,
+          emoji:`http://openweathermap.org/img/wn/${response.data.daily[6].weather[0].icon}@2x.png`
+        })
+        setUpdated(true)
+
+      }
+
+      function getSearched(response){
+        setCoordinates({
+          lat: response.data.coord.lat,
+          long: response.data.coord.lon})
+          let apiKey = `a0ec055234934001bdc16c33f46f3ecb`
+          let weatherUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.long}&appid=${apiKey}&units=metric`
+          axios.get(weatherUrl).then(getSearchedWeather)
+
+      }
+
+
       function submitEntry(submit){
         submit.preventDefault();
-        console.log(city)
+        let apiKey = `a0ec055234934001bdc16c33f46f3ecb`
+        let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+        axios.get(apiUrl).then(getSearched)
+
+
+
+
       }
   
       function updateEntry(event){
@@ -126,7 +213,7 @@ export default function TemperatureMain() {
                 <span className="hour">10</span>:
                 <span className="minutes">30</span>
                 <span className="am-pm">PM</span>
-                <div className="weather-status">{weatherLocation.description}</div>
+                <div className="weather-status">{weather.description}</div>
               </h1>
             </div>
             
@@ -174,17 +261,17 @@ export default function TemperatureMain() {
               <div className="col-sm-2"></div>
 
               <div className="col-sm-4 current-temp-number">
-                {weatherLocation.temp_current}°C{" "}
+                {weather.temp_current}°C{" "}
                 <img
                   className="header-emoji"
-                  src={weatherLocation.emoji}
-                  alt={weatherLocation.description}
+                  src={weather.emoji}
+                  alt={weather.description}
                 >
                 </img>
               </div>
               <div className="col-sm-4 feels-like-text">
                 Feels Like
-                <div className="row temp-number-curr">{weatherLocation.feels_like}°C</div>
+                <div className="row temp-number-curr">{weather.feels_like}°C</div>
               </div>
 
               <div className="col-sm-2"></div>
@@ -229,7 +316,7 @@ export default function TemperatureMain() {
                 </span>
                 <div className="row">
                   <div className="wind-speed-number">
-                    {weatherLocation.wind}
+                    {weather.wind}
                     <div className="row">
                         <span className="wind-speed-number">KM</span>
                       </div>
@@ -245,7 +332,7 @@ export default function TemperatureMain() {
                   POP ☔
                 </span>
                 <div className="row">
-                  <div className="rain-number">{weatherLocation.pop}%</div>
+                  <div className="rain-number">{weather.pop}%</div>
                 </div>
               </div>
               <div className="col-sm curr-low-section">
@@ -253,7 +340,7 @@ export default function TemperatureMain() {
                 <span className="thermo-colour">🌡</span>
 
                 <div className="row">
-                  <div className="low-temp-number">{weatherLocation.low}°C</div>
+                  <div className="low-temp-number">{weather.low}°C</div>
                 </div>
               </div>
               <div className="col-sm curr-high-section">
@@ -265,7 +352,7 @@ export default function TemperatureMain() {
                   HIGH 🌡
                 </span>
                 <div className="row">
-                  <div className="high-temp-number">{weatherLocation.high}°C</div>
+                  <div className="high-temp-number">{weather.high}°C</div>
                 </div>
               </div>
             </div>
