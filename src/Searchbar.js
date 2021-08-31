@@ -1,34 +1,18 @@
 import React, {useState} from "react";
-import axios from "axios";
+
 
 import "./Searchbar.css";
 
 export default function Searchbar() {
-const [weatherLocation, setWeatherLocation] = useState("");
-const [lat, setLat] = useState("null");
-const [long, setLong]= useState("null");
+
+const [coordinates, setCoordinates] = useState("null");
 let [city, setCity] = useState("");
 let [updated, setUpdated] = useState(false);
 
   function getLocationWeather(response){
-    setLat(response.coords.latitude);
-    setLong(response.coords.longitude);
-
-    function getWeather(response){
-      console.log(response)
-
-    }
-    if (lat === null){
-      return;
-    }
-    else {
-      let apiKey = `a0ec055234934001bdc16c33f46f3ecb`
-      let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`
-      axios.get(apiUrl).then(getWeather);
-      setUpdated(true);
-
-
-    }
+    setCoordinates({lat: response.coords.latitude,
+      long:response.coords.longitude});
+ 
 
 
   }
@@ -40,11 +24,11 @@ let [updated, setUpdated] = useState(false);
   
     function submitEntry(submit){
       submit.preventDefault();
+      console.log(city)
     }
 
     function updateEntry(event){
       setCity(event.target.value);
-      console.log(city)
     }
 
 

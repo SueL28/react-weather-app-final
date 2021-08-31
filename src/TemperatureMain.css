@@ -1,3 +1,79 @@
+/*HEADER CSS */
+
+ .date-line{
+  font-weight: 500;
+  margin-top: 30px;
+}
+
+ .current-time {
+    color: rgb(77, 76, 72);
+    font-weight: 800;
+    margin-top: 30px;
+  }
+  
+  .am-pm {
+    font-size: 30pt;
+    margin-left: 10px;
+  }
+  
+  
+   .weather-status {
+    font-size: 22pt;
+    font-family: "Archivo Narrow", sans-serif;
+    font-style: normal;
+    margin-left: 7px;
+  }
+  
+/*SEARCH BAR CSS */
+ .search-bar-container {
+  display: block;
+  margin: 0px auto;
+  padding-top: 70px;
+}
+
+ .search-bar {
+  border: 2px solid rgb(77, 76, 72);
+  display: block;
+  margin: 0 auto;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.spacing {
+  padding-right: 4px;
+}
+
+ .magnifying-glass {
+  font-size: 15pt;
+  border-radius: 7px;
+  transition: all 150ms ease-in-out;
+}
+
+ .magnifying-glass:hover {
+  background-color: rgba(129, 129, 129, 0.555);
+}
+
+ .current-location {
+  font-size: 14pt;
+  background-color: rgb(0, 110, 197);
+  color: white;
+  border-radius: 7px;
+  transition: all 150ms ease-in-out;
+  font-family: "Barlow Semi Condensed", sans-serif;
+}
+
+ .current-location:hover {
+  background-color: rgb(85, 171, 236);
+}
+
+
+  /*TEMPERATURE CSS */
+
+.header-emoji{
+  max-width: 65px;
+}
+
+
 .Temperatures .feels-like-text {
     color: rgb(0, 110, 197);
     font-weight: 600;
@@ -90,6 +166,10 @@
   
   .factor-header-wind {
     color: rgb(51, 144, 216);
+  }
+
+  .wind-emoji{
+    font-size: 12pt;
   }
   
   .factor-header-colour {

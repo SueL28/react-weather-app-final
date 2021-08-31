@@ -18,7 +18,7 @@ export default function App() {
             </h1>
           </div>
           <div className="col-sm-6">
-            <Searchbar />
+            <Searchbar/>
           </div>
         </div>
       </div>
