@@ -2,7 +2,7 @@ import axios from "axios";
 import React, {useState} from "react";
 import Forecast from "./Forecast";
 import "./TemperatureMain.css";
-
+import FormattedDate from "./FormattedDate";
 
 export default function TemperatureMain() {
   /* GET LOCATION COORDINATES AND API */
@@ -25,8 +25,10 @@ export default function TemperatureMain() {
     }
 
     function getWeather(response){
+      console.log(response.data)
       setUpdated(true);
       setWeather({
+        dt: new Date (response.data.current.dt * 1000),
         temp_current: (Math.round(response.data.current.temp)), 
         feels_like: (Math.round(response.data.current.feels_like)), 
         high: (Math.round(response.data.daily[0].temp.max)), 
@@ -38,6 +40,7 @@ export default function TemperatureMain() {
       })
     
       setFutureWeatherTomorrow({
+          dt: new Date (response.data.daily[0].dt * 1000),
           temp_current:(Math.round(response.data.daily[0].temp.day)), 
           feels_like:(Math.round(response.data.daily[0].feels_like.day)), 
           high:(Math.round(response.data.daily[0].temp.max)), 
@@ -48,7 +51,7 @@ export default function TemperatureMain() {
           emoji:`http://openweathermap.org/img/wn/${response.data.daily[0].weather[0].icon}@2x.png`
         })
         setFutureDay2({
-          dt: response.data.dt,
+          dt: new Date (response.data.daily[1].dt * 1000),
           high: (Math.round(response.data.daily[1].temp.max)), 
           low: (Math.round(response.data.daily[1].temp.min)),
           description: response.data.daily[1].weather[0].description,
@@ -56,35 +59,35 @@ export default function TemperatureMain() {
         }) 
 
         setFutureDay3({
-          dt: response.data.dt,
+          dt: new Date (response.data.daily[2].dt * 1000),
           high: (Math.round(response.data.daily[2].temp.max)), 
           low: (Math.round(response.data.daily[2].temp.min)),
           description: response.data.daily[2].weather[0].description,
           emoji:`http://openweathermap.org/img/wn/${response.data.daily[2].weather[0].icon}@2x.png`
         }) 
         setFutureDay4({
-          dt: response.data.dt,
+          dt: new Date (response.data.daily[3].dt * 1000),
           high: (Math.round(response.data.daily[3].temp.max)), 
           low: (Math.round(response.data.daily[3].temp.min)),
           description: response.data.daily[3].weather[0].description,
           emoji:`http://openweathermap.org/img/wn/${response.data.daily[3].weather[0].icon}@2x.png`
         }) 
         setFutureDay5({
-          dt: response.data.dt,
+          dt: new Date (response.data.daily[4].dt * 1000),
           high: (Math.round(response.data.daily[4].temp.max)), 
           low: (Math.round(response.data.daily[4].temp.min)),
           description: response.data.daily[4].weather[0].description,
           emoji:`http://openweathermap.org/img/wn/${response.data.daily[4].weather[0].icon}@2x.png`
         }) 
         setFutureDay6({
-          dt: response.data.dt,
+          dt: new Date (response.data.daily[5].dt * 1000),
           high: (Math.round(response.data.daily[5].temp.max)), 
           low: (Math.round(response.data.daily[5].temp.min)),
           description: response.data.daily[5].weather[0].description,
           emoji:`http://openweathermap.org/img/wn/${response.data.daily[5].weather[0].icon}@2x.png`
         }) 
         setFutureDay7({
-          dt: response.data.dt,
+          dt: new Date (response.data.daily[6].dt * 1000),
           high: (Math.round(response.data.daily[6].temp.max)), 
           low: (Math.round(response.data.daily[6].temp.min)),
           description: response.data.daily[6].weather[0].description,
@@ -107,6 +110,7 @@ export default function TemperatureMain() {
 
       function getSearchedWeather(response){
         setWeather({
+          dt: new Date (response.data.current.dt * 1000),
           temp_current: (Math.round(response.data.current.temp)), 
           feels_like: (Math.round(response.data.current.feels_like)), 
           high: (Math.round(response.data.daily[0].temp.max)), 
@@ -118,6 +122,7 @@ export default function TemperatureMain() {
         })
 
         setFutureWeatherTomorrow({
+          dt: new Date (response.data.daily[0].dt * 1000),
           temp_current:(Math.round(response.data.daily[0].temp.day)), 
           feels_like:(Math.round(response.data.daily[0].feels_like.day)), 
           high:(Math.round(response.data.daily[0].temp.max)), 
@@ -128,7 +133,7 @@ export default function TemperatureMain() {
           emoji:`http://openweathermap.org/img/wn/${response.data.daily[0].weather[0].icon}@2x.png`
         })
         setFutureDay2({
-          dt: response.data.dt,
+          dt: new Date (response.data.daily[1].dt * 1000),
           high: (Math.round(response.data.daily[1].temp.max)), 
           low: (Math.round(response.data.daily[1].temp.min)),
           description: response.data.daily[1].weather[0].description,
@@ -136,35 +141,35 @@ export default function TemperatureMain() {
         }) 
 
         setFutureDay3({
-          dt: response.data.dt,
+          dt: new Date (response.data.daily[2].dt * 1000),
           high: (Math.round(response.data.daily[2].temp.max)), 
           low: (Math.round(response.data.daily[2].temp.min)),
           description: response.data.daily[2].weather[0].description,
           emoji:`http://openweathermap.org/img/wn/${response.data.daily[2].weather[0].icon}@2x.png`
         }) 
         setFutureDay4({
-          dt: response.data.dt,
+          dt: new Date (response.data.daily[3].dt * 1000),
           high: (Math.round(response.data.daily[3].temp.max)), 
           low: (Math.round(response.data.daily[3].temp.min)),
           description: response.data.daily[3].weather[0].description,
           emoji:`http://openweathermap.org/img/wn/${response.data.daily[3].weather[0].icon}@2x.png`
         }) 
         setFutureDay5({
-          dt: response.data.dt,
+          dt: new Date (response.data.daily[4].dt * 1000),
           high: (Math.round(response.data.daily[4].temp.max)), 
           low: (Math.round(response.data.daily[4].temp.min)),
           description: response.data.daily[4].weather[0].description,
           emoji:`http://openweathermap.org/img/wn/${response.data.daily[4].weather[0].icon}@2x.png`
         }) 
         setFutureDay6({
-          dt: response.data.dt,
+          dt: new Date (response.data.daily[5].dt * 1000),
           high: (Math.round(response.data.daily[5].temp.max)), 
           low: (Math.round(response.data.daily[5].temp.min)),
           description: response.data.daily[5].weather[0].description,
           emoji:`http://openweathermap.org/img/wn/${response.data.daily[5].weather[0].icon}@2x.png`
         }) 
         setFutureDay7({
-          dt: response.data.dt,
+          dt: new Date (response.data.daily[6].dt * 1000),
           high: (Math.round(response.data.daily[6].temp.max)), 
           low: (Math.round(response.data.daily[6].temp.min)),
           description: response.data.daily[6].weather[0].description,
@@ -208,7 +213,7 @@ export default function TemperatureMain() {
       <div className="container">
           <div className="row">
             <div className="col-sm-6 current-time">
-              <h2 className="date-line">Monday August 23</h2>
+              <h2 className="date-line"><FormattedDate date={weather.dt}/></h2>
               <h1>
                 <span className="hour">10</span>:
                 <span className="minutes">30</span>
