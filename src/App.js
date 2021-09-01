@@ -11,7 +11,6 @@ function App() {
       <div className="container-for-app">
 
         <TemperatureMain />
-
         <Footer />
 
 

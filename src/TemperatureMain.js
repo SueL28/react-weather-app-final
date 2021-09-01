@@ -346,7 +346,7 @@ export default function TemperatureMain() {
                   POP ☔
                 </span>
                 <div className="row">
-                  <div className="rain-number">{weather.pop}%</div>
+                  <div className="rain-number">{Math.trunc(weather.pop)}%</div>
                 </div>
               </div>
               <div className="col-sm curr-low-section">
@@ -400,7 +400,7 @@ export default function TemperatureMain() {
                   POP ☔
                 </span>
                 <div className="row">
-                  <div className="rain-number-tom">{futureWeatherTomorrow.pop}%</div>
+                  <div className="rain-number-tom">{Math.trunc(futureWeatherTomorrow.pop)}%</div>
                 </div>
               </div>
               <div className="col-sm tom-low-section">
@@ -438,7 +438,7 @@ export default function TemperatureMain() {
       <div className="container">
           <div className="row">
             <div className="col-sm-6 current-time">
-              <h2 className="date-line"></h2>
+              <h2 className="date-line">-</h2>
               <h1>
                 <span className="hour">-</span>
                 <span className="minutes">-</span>
