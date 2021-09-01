@@ -253,7 +253,7 @@ export default function TemperatureMain() {
                     <button className="current-location location-button" onClick={getLocation}>
                       Current Location
                     </button>
-                    <div className="small text-center">*Sometimes needs multiple clicks for api response</div>
+                    <div className="small text-center">*Sometimes needs multiple submits for api response</div>
                   </div>
                 </div>
               </form>
@@ -470,7 +470,7 @@ export default function TemperatureMain() {
                     <button className="current-location location-button" onClick={getLocation}>
                       Current Location
                     </button>
-                    <div className="small text-center">*Need to submit search first, location button works after</div>
+                    <div className="small text-center">*Need to submit a few times, location works after entering a search</div>
                   </div>
                 </div>
               </form>
