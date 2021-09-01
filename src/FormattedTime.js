@@ -1,34 +1,26 @@
 
-import React from "react";
+import React, {useState} from "react";
 
 export default function FormattedTime(props){
-    console.log(props.date)
 
-    return(
-        <div>
-            HOUR:MINUTES
-        </div>
-    );
+    let hour = props.date.getHours();
+    let minutes = props.date.getMinutes();
+    let amPm = "";
 
-   /* let hour = props.data.getHour();
-    let minutes = props.data.getMinutes();
-    //let [amPm, setAmPm] = useState("");
+    if (hour < 12){
+        amPm="AM";
+    } else {
+        amPm="PM";
+    } 
 
-    
+
     if (hour < 10){
-        hour = `0:${hour}`
+        hour = `0${hour}`
     }
     
     if (minutes < 10){
-        minutes = `0:${minutes}`
+        minutes = `0${minutes}`
     }
-    
-    /* if (hour < 12){
-        setAmPm="AM";
-    } else {
-        setAmPm="PM";
-    } 
-
 
     if (hour === "00") {
         hour = "12";
@@ -67,9 +59,11 @@ export default function FormattedTime(props){
         hour = "11";
       }
 
-    return(
+    return (
         <div>
-            <span className="hour">{hour}</span>:<span className="minutes">{minutes}</span><span className="am-pm"></span>
+            <span className="hour">{hour}</span>:<span className="minutes">{minutes}</span><span className="am-pm">{amPm}</span>
         </div>
-    );  */
+    );
+     
+
 }

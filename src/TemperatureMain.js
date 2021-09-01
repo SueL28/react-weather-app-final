@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import Forecast from "./Forecast";
 import "./TemperatureMain.css";
 import FormattedDate from "./FormattedDate";
+import FormattedTime from "./FormattedTime";
 
 export default function TemperatureMain() {
   /* GET LOCATION COORDINATES AND API */
@@ -215,9 +216,7 @@ export default function TemperatureMain() {
             <div className="col-sm-6 current-time">
               <h2 className="date-line"><FormattedDate date={weather.dt}/></h2>
               <h1>
-                <span className="hour">10</span>:
-                <span className="minutes">30</span>
-                <span className="am-pm">PM</span>
+                <span><FormattedTime date={weather.dt}/></span>
                 <div className="weather-status">{weather.description}</div>
               </h1>
             </div>
