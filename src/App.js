@@ -29,7 +29,7 @@ function App() {
           </div>
         </div>
       </div>
-);
+    );
   }
   
   if (hours <= 12 && hours >= 1){
@@ -44,7 +44,7 @@ function App() {
           </div>
         </div>
       </div>
-);
+    );
 
   }
   if (hours <= 18 && hours >= 12){
@@ -59,7 +59,7 @@ function App() {
           </div>
         </div>
       </div>
-);
+    );
 
   }
   if (hours <= 23 && hours >= 18){
@@ -74,7 +74,7 @@ function App() {
           </div>
         </div>
       </div>
-);
+    );
 
   }
 
