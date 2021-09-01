@@ -242,12 +242,13 @@ export default function TemperatureMain() {
                         className="form-control search-bar"
                         placeholder="Search for Location"
                         onChange= {updateEntry}
+                        autoFocus="on"
                       />
                     </div>
                   </div>
                   <div className="col-sm">
                     <span className="spacing">
-                      <input type="submit" value="🔍" className="magnifying-glass" autoFocus="on"/>
+                      <input type="submit" value="🔍" className="magnifying-glass"/>
                     </span>
                     <button className="current-location location-button" onClick={getLocation}>
                       Current Location
