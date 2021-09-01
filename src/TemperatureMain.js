@@ -4,6 +4,8 @@ import Forecast from "./Forecast";
 import "./TemperatureMain.css";
 import FormattedDate from "./FormattedDate";
 import FormattedTime from "./FormattedTime";
+import { debounce } from "lodash";
+
 
 export default function TemperatureMain() {
   /* GET LOCATION COORDINATES AND API */
@@ -22,11 +24,12 @@ export default function TemperatureMain() {
     function getLocationWeather(response){
       setCoordinates({lat: response.coords.latitude,
         long:response.coords.longitude});
+      console.log(coordinates)
         
     }
 
+
     function getWeather(response){
-      console.log(response.data)
       setUpdated(true);
       setWeather({
         dt: new Date (response.data.current.dt * 1000),
@@ -94,6 +97,7 @@ export default function TemperatureMain() {
           description: response.data.daily[6].weather[0].description,
           emoji:`http://openweathermap.org/img/wn/${response.data.daily[6].weather[0].icon}@2x.png`
         })
+        setCity("Your Location")
         
     }
   
@@ -104,10 +108,13 @@ export default function TemperatureMain() {
       let apiKey = `a0ec055234934001bdc16c33f46f3ecb`
       let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.long}&appid=${apiKey}&units=metric`
       axios.get(apiUrl).then(getWeather)
+      //setTimeout(function(){getWeather()}, 1000);
       
       }
 
       /* GET SEARCHED WEATHER FROM INPUT */
+
+      
 
       function getSearchedWeather(response){
         setWeather({
@@ -187,8 +194,10 @@ export default function TemperatureMain() {
           let apiKey = `a0ec055234934001bdc16c33f46f3ecb`
           let weatherUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.long}&appid=${apiKey}&units=metric`
           axios.get(weatherUrl).then(getSearchedWeather)
-
+          //setTimeout(function(){getSearchedWeather()}, 2000);
       }
+
+      
 
 
       function submitEntry(submit){
@@ -206,6 +215,7 @@ export default function TemperatureMain() {
         setCity(event.target.value);
       }
 
+
   if(updated){
   return (
 
@@ -220,6 +230,8 @@ export default function TemperatureMain() {
                 <div className="weather-status">{weather.description}</div>
               </h1>
             </div>
+
+
             
             {/* SEARCH BAR SECTION */}
 
@@ -243,6 +255,7 @@ export default function TemperatureMain() {
                     <button className="current-location location-button" onClick={getLocation}>
                       Current Location
                     </button>
+                    <div className="small text-center">*Need to submit search first, location button works after</div>
                   </div>
                 </div>
               </form>
@@ -413,79 +426,7 @@ export default function TemperatureMain() {
 
       {/* 7 DAY FORECAST SECTION */}
 
-      <div className="Forecast">
-      <div className="forecast-container">
-        <h3 className="forecast-font">7 Day Forecast</h3>
-
-        <hr />
-
-        <div className="row">
-          <div className="col-sm forecast-day-container">
-            <span className="forecast-day">Monday</span>
-            <div className="weather-status-font">{futureWeatherTomorrow.description}</div>
-            <div><img className="emoji-forecast" src={futureWeatherTomorrow.emoji} alt={futureWeatherTomorrow.description}></img></div>
-            <div className="forecast-high-number">{futureWeatherTomorrow.high}°C</div>
-            <div className="weather-status-font">HIGH</div>
-            <div className="forecast-low-number">{futureWeatherTomorrow.low}°C</div>
-            <p className="weather-status-font">LOW</p>
-          </div>
-          <div className="col-sm forecast-day-container">
-          <span className="forecast-day">Monday</span>
-            <div className="weather-status-font">{futureDay2.description}</div>
-            <div><img className="emoji-forecast" src={futureDay2.emoji} alt={futureDay2.description}></img></div>
-            <div className="forecast-high-number">{futureDay2.high}°C</div>
-            <div className="weather-status-font">HIGH</div>
-            <div className="forecast-low-number">{futureDay2.low}°C</div>
-            <p className="weather-status-font">LOW</p>
-          </div>
-          <div className="col-sm forecast-day-container">
-          <span className="forecast-day">Tuesday</span>
-            <div className="weather-status-font">{futureDay3.description}</div>
-            <div><img className="emoji-forecast" src={futureDay3.emoji} alt={futureDay3.description}></img></div>
-            <div className="forecast-high-number">{futureDay3.high}°C</div>
-            <div className="weather-status-font">HIGH</div>
-            <div className="forecast-low-number">{futureDay3.low}°C</div>
-            <p className="weather-status-font">LOW</p>
-          </div>
-          <div className="col-sm forecast-day-container">
-          <span className="forecast-day">Wednesday</span>
-            <div className="weather-status-font">{futureDay4.description}</div>
-            <div><img className="emoji-forecast" src={futureDay4.emoji} alt={futureDay4.description}></img></div>
-            <div className="forecast-high-number">{futureDay4.high}°C</div>
-            <div className="weather-status-font">HIGH</div>
-            <div className="forecast-low-number">{futureDay4.low}°C</div>
-            <p className="weather-status-font">LOW</p>
-          </div>
-          <div className="col-sm forecast-day-container">
-          <span className="forecast-day">Thursday</span>
-            <div className="weather-status-font">{futureDay5.description}</div>
-            <div><img className="emoji-forecast" src={futureDay5.emoji} alt={futureDay5.description}></img></div>
-            <div className="forecast-high-number">{futureDay5.high}°C</div>
-            <div className="weather-status-font">HIGH</div>
-            <div className="forecast-low-number">{futureDay5.low}°C</div>
-            <p className="weather-status-font">LOW</p>
-          </div>
-          <div className="col-sm forecast-day-container">
-          <span className="forecast-day">Friday</span>
-            <div className="weather-status-font">{futureDay6.description}</div>
-            <div><img className="emoji-forecast" src={futureDay6.emoji} alt={futureDay6.description}></img></div>
-            <div className="forecast-high-number">{futureDay6.high}°C</div>
-            <div className="weather-status-font">HIGH</div>
-            <div className="forecast-low-number">{futureDay6.low}°C</div>
-            <p className="weather-status-font">LOW</p>
-          </div>
-          <div className="col-sm forecast-day-container-sunday">
-          <span className="forecast-day">Saturday</span>
-            <div className="weather-status-font">{futureDay7.description}</div>
-            <div><img className="emoji-forecast" src={futureDay7.emoji} alt={futureDay7.description}></img></div>
-            <div className="forecast-high-number">{futureDay7.high}°C</div>
-            <div className="weather-status-font">HIGH</div>
-            <div className="forecast-low-number">{futureDay7.low}°C</div>
-            <p className="weather-status-font">LOW</p>
-          </div>
-        </div>
-      </div>
-    </div>
+      <Forecast tomorrow={futureWeatherTomorrow} day2={futureDay2} day3={futureDay3} day4={futureDay4} day5={futureDay5} day6={futureDay6} day7={futureDay7} />
 
 
     </div>
@@ -500,12 +441,12 @@ export default function TemperatureMain() {
       <div className="container">
           <div className="row">
             <div className="col-sm-6 current-time">
-              <h2 className="date-line">Monday August 23</h2>
+              <h2 className="date-line"></h2>
               <h1>
-                <span className="hour">10</span>:
-                <span className="minutes">30</span>
-                <span className="am-pm">PM</span>
-                <div className="weather-status">Cloudy</div>
+                <span className="hour"></span>
+                <span className="minutes"></span>
+                <span className="am-pm"></span>
+                <div className="weather-status"></div>
               </h1>
             </div>
             
@@ -531,6 +472,7 @@ export default function TemperatureMain() {
                     <button className="current-location location-button" onClick={getLocation}>
                       Current Location
                     </button>
+                    <div className="small text-center">*Click/submit twice slowly, slow response</div>
                   </div>
                 </div>
               </form>
@@ -547,7 +489,7 @@ export default function TemperatureMain() {
         <div className="row">
           <div className="col-sm-6 current-temp-status">
             <h3 className="currently-header">
-              Currently in <span className="city-name">{city}</span>
+              Currently in <span className="city-name"></span>
             </h3>
             <div className="row">
               <div className="col-sm-2"></div>
@@ -573,7 +515,7 @@ export default function TemperatureMain() {
 
           <div className="col-sm-6 tomorrow-temp-status">
             <h3 className="tomorrow-temp-header">
-              Tomorrow in <span className="city-name-t">{city}</span>
+              Tomorrow in <span className="city-name-t"></span>
             </h3>
             <div className="row elements-tomorrow-temp">
               <div className="col-sm-4 current-temp-number-t">
