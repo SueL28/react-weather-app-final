@@ -4,7 +4,7 @@ import Forecast from "./Forecast";
 import "./TemperatureMain.css";
 import FormattedDate from "./FormattedDate";
 import FormattedTime from "./FormattedTime";
-import { debounce } from "lodash";
+import ConvertTemperature from "./ConvertTemperature"
 
 
 export default function TemperatureMain() {
@@ -198,8 +198,6 @@ export default function TemperatureMain() {
       }
 
       
-
-
       function submitEntry(submit){
         submit.preventDefault();
         let apiKey = `a0ec055234934001bdc16c33f46f3ecb`
@@ -207,12 +205,11 @@ export default function TemperatureMain() {
         axios.get(apiUrl).then(getSearched)
 
 
-
-
       }
   
       function updateEntry(event){
         setCity(event.target.value);
+
       }
 
 
@@ -250,12 +247,12 @@ export default function TemperatureMain() {
                   </div>
                   <div className="col-sm">
                     <span className="spacing">
-                      <input type="submit" value="🔍" className="magnifying-glass"/>
+                      <input type="submit" value="🔍" className="magnifying-glass" autoFocus="on"/>
                     </span>
                     <button className="current-location location-button" onClick={getLocation}>
                       Current Location
                     </button>
-                    <div className="small text-center">*Need to submit search first, location button works after</div>
+                    <div className="small text-center">*Sometimes needs multiple clicks for api response</div>
                   </div>
                 </div>
               </form>
@@ -272,23 +269,23 @@ export default function TemperatureMain() {
         <div className="row">
           <div className="col-sm-6 current-temp-status">
             <h3 className="currently-header">
-              Currently in <span className="city-name">{city}</span>
+              Currently in <span className="city-name text-capitalize">{city}</span>
             </h3>
             <div className="row">
               <div className="col-sm-2"></div>
 
               <div className="col-sm-4 current-temp-number">
-                {weather.temp_current}°C{" "}
                 <img
                   className="header-emoji"
                   src={weather.emoji}
                   alt={weather.description}
                 >
                 </img>
+                <ConvertTemperature temp={weather.temp_current} />
               </div>
               <div className="col-sm-4 feels-like-text">
                 Feels Like
-                <div className="row temp-number-curr">{weather.feels_like}°C</div>
+                <div className="row temp-number-curr"><ConvertTemperature temp={weather.feels_like}/></div>
               </div>
 
               <div className="col-sm-2"></div>
@@ -297,21 +294,21 @@ export default function TemperatureMain() {
 
           <div className="col-sm-6 tomorrow-temp-status">
             <h3 className="tomorrow-temp-header">
-              Tomorrow in <span className="city-name-t">{city}</span>
+              Tomorrow in <span className="city-name-t text-capitalize">{city}</span>
             </h3>
             <div className="row elements-tomorrow-temp">
               <div className="col-sm-4 current-temp-number-t">
-                {futureWeatherTomorrow.temp_current}°C{" "}
                 <img
                   className="header-emoji"
                   src={futureWeatherTomorrow.emoji}
                   alt={futureWeatherTomorrow.description}
                 >
                 </img>
+                <span><ConvertTemperature temp={weather.temp_current} /></span>
               </div>
               <div className="col-sm-4 feels-like-text">
                 Feels Like
-                <div className="row temp-number-curr">{futureWeatherTomorrow.feels_like}°C</div>
+                <div className="row temp-number-curr"><ConvertTemperature temp={futureWeatherTomorrow.feels_like}/></div>
               </div>
 
               <div className="col-sm-2"></div>
@@ -357,7 +354,7 @@ export default function TemperatureMain() {
                 <span className="thermo-colour">🌡</span>
 
                 <div className="row">
-                  <div className="low-temp-number">{weather.low}°C</div>
+                  <div className="low-temp-number"><ConvertTemperature temp={weather.low}/></div>
                 </div>
               </div>
               <div className="col-sm curr-high-section">
@@ -369,7 +366,7 @@ export default function TemperatureMain() {
                   HIGH 🌡
                 </span>
                 <div className="row">
-                  <div className="high-temp-number">{weather.high}°C</div>
+                  <div className="high-temp-number"><ConvertTemperature temp={weather.high}/></div>
                 </div>
               </div>
             </div>
@@ -410,13 +407,13 @@ export default function TemperatureMain() {
                 <span className="factor-header-colour">LOW</span>{" "}
                 <span className="thermo-colour">🌡</span>
                 <div className="row">
-                  <div className="low-temp-number-tom">{futureWeatherTomorrow.low}°C</div>
+                  <div className="low-temp-number-tom"><ConvertTemperature temp={futureWeatherTomorrow.low}/></div>
                 </div>
               </div>
               <div className="col-sm tom-high-section">
                 <span className="factor-header-colour">HIGH 🌡</span>
                 <div className="row">
-                  <div className="high-temp-number-tom">{futureWeatherTomorrow.high}°C</div>
+                  <div className="high-temp-number-tom"><ConvertTemperature temp={futureWeatherTomorrow.high}/></div>
                 </div>
               </div>
             </div>
@@ -443,10 +440,10 @@ export default function TemperatureMain() {
             <div className="col-sm-6 current-time">
               <h2 className="date-line"></h2>
               <h1>
-                <span className="hour"></span>
-                <span className="minutes"></span>
-                <span className="am-pm"></span>
-                <div className="weather-status"></div>
+                <span className="hour">-</span>
+                <span className="minutes">-</span>
+                <span className="am-pm">-</span>
+                <div className="weather-status">-</div>
               </h1>
             </div>
             
@@ -467,12 +464,12 @@ export default function TemperatureMain() {
                   </div>
                   <div className="col-sm">
                     <span className="spacing">
-                      <input type="submit" value="🔍" className="magnifying-glass"/>
+                      <input type="submit" value="🔍" className="magnifying-glass" autoFocus="true"/>
                     </span>
                     <button className="current-location location-button" onClick={getLocation}>
                       Current Location
                     </button>
-                    <div className="small text-center">*Click/submit twice slowly, slow response</div>
+                    <div className="small text-center">*Need to submit search first, location button works after</div>
                   </div>
                 </div>
               </form>

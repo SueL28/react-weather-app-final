@@ -71,7 +71,10 @@
   /*TEMPERATURE CSS */
 
 .header-emoji{
-  max-width: 65px;
+  max-width: 90px;
+  margin-top: -60px;
+  margin-bottom: -50px;
+
 }
 
 
@@ -103,6 +106,8 @@
     color: rgb(77, 76, 72);
     text-align: center;
   }
+
+
   
   .Temperatures .header-emoji {
     font-size: 28pt;
